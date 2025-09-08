@@ -8,7 +8,7 @@ on:
     branches: [ "main" ]
     
 env:
-  APP_NAME: "iwa-java"
+  APP_NAME: "IWA-Java"
 
 jobs:
   build-and-push:
