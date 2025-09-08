@@ -23,7 +23,13 @@ jobs:
 
       - name: Build with Maven
         run: mvn clean package
-
+        
+      - name: Upload Artifact (JAR)
+        uses: actions/upload-artifact@v4
+        with:
+          name: iwa-jar
+          path: target/iwa.jar  
+          
       - name: Log in to GHCR
         run: echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
