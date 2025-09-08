@@ -25,7 +25,7 @@ jobs:
         run: mvn clean package
         
       - name: Upload Artifact (JAR)
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: iwa-jar
           path: target/iwa.jar  
