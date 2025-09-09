@@ -2,10 +2,10 @@ name: Build and Deploy Java App
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "dev" ]
     tags: [ "*" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "*" ]
     
 env:
   APP_NAME: "iwa-java"
