@@ -1,5 +1,6 @@
 # IWA (Insecure Web App) Java Edition
 
+
 ## Overview
 
 _IWA (Insecure Web App) Java Edition_ is an example Java/Spring Web Application for use in **DevSecOps** scenarios and demonstrations.
@@ -94,6 +95,7 @@ Go To "Site" Operations and expand on :
 /api/v3/site/sign-in
 ```
 Click "Try it Out" button, provide administrative username and password mentioned above and hit "Execute" button.
+
 
 Copy the "accessToken" value from response and paste into Swagger Authorization (padlock) icon.
 
