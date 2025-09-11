@@ -20,7 +20,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - uses: psidevsecos/ci-actions/.github/actions/java-build@main
+      - name : Build java  
+        uses: psidevsecos/ci-actions/.github/actions/java-build@main
         with:
           java-version: '8'
         
