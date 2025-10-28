@@ -1,6 +1,8 @@
-# IWA (Insecure Web App) Java Edition test trigger 1
+# IWA (Insecure Web App) Java Edition test trigger created from branch feature a
 
 ## Overview
+
+Random description added by Razor-Sec-Enterprise.
 
 _IWA (Insecure Web App) Java Edition_ is an example Java/Spring Web Application for use in **DevSecOps** scenarios and demonstrations.
 It includes some examples of bad and insecure code - which can be found using static and dynamic application
@@ -14,7 +16,7 @@ and requesting Services (prescriptions, health checks etc). It has a modern-ish 
 ## Forking the Repository
 
 In order to execute example scenarios for yourself it is recommended that you "fork" a copy of this repository into
-your own GitHub account. The process of "forking" is described in detail in the [GitHub documentation](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo) - you can start the process by clicking on the "Fork" button at the top right.
+your own GitHub account. The process of "forking" is described in detail in the [GitHub documentation](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo) - you can start th[...] 
 
 ## Building the Application
 
@@ -74,7 +76,7 @@ To use the application navigate to the URL: [http://localhost:8888](http://local
 actions unauthenticated, but if you want to login you can do so as one of the following users:
 
 - **user1@localhost.com/password**
-- **user2@localhost.com/password**
+- **user2@localhost.com/password**  
   
 There is also an administrative user:
 
