@@ -59,6 +59,8 @@ import javax.validation.Valid;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URLConnection;
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
@@ -82,9 +84,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -611,12 +616,45 @@ public class UserController extends AbstractBaseController {
         return ResponseEntity.notFound().build();
     }
     
+    private static final Set<String> SSRF_ALLOWED_HOSTS = new HashSet<>(
+            Arrays.asList("example.com", "www.example.com"));
+
+    private boolean isAllowedUrl(String rawUrl) {
+        try {
+            URI uri = new URI(rawUrl);
+            String scheme = uri.getScheme();
+            String host = uri.getHost();
+
+            if (Objects.isNull(scheme) || Objects.isNull(host)) {
+                return false;
+            }
+
+            if (!("http".equalsIgnoreCase(scheme) || "https".equalsIgnoreCase(scheme))) {
+                return false;
+            }
+
+            // Disallow credentialed URLs
+            if (Objects.nonNull(uri.getUserInfo())) {
+                return false;
+            }
+
+            return SSRF_ALLOWED_HOSTS.contains(host.toLowerCase());
+        } catch (URISyntaxException e) {
+            return false;
+        }
+    }
+
     @GetMapping("/ssrf")
     public String ssrfExploit(Model model, @Param("url") String url) {
     	
     	if (Objects.isNull(url) || url.isEmpty())
     		return "user/ssrf";
-    	
+
+        if (!isAllowedUrl(url)) {
+            model.addAttribute("url", url);
+            model.addAttribute("urlcontent", "URL is not allowed.");
+            return "user/ssrf";
+        }
     	
     	URL urlLoc;
 		try {
